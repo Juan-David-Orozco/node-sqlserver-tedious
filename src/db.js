@@ -20,20 +20,21 @@ const config = {
 const connection = new Connection(config);
 
 // Setup event handler when the connection is established. 
-connection.on('connect', function(err) {
-  if(err) {
-    console.log('Error: ', err)
-  }
-  // If no error, then good to go...
-  console.log("DB is connected")
-  //executeStatement();
-  executeProcedure();
-  //executeProcedureParameter()
-  //executeQuery()
-});
-
-// Initialize the connection.
-connection.connect();
+function connectDB () {
+  connection.on('connect', function(err) {
+    if(err) {
+      console.log('Error: ', err)
+    }
+    // If no error, then good to go...
+    console.log("DB is connected")
+    //executeStatement();
+    //executeProcedure();
+    //executeProcedureParameter()
+    executeQuery()
+  });
+  // Initialize the connection.
+  connection.connect();
+}
 
 
 // ejecucion de consula DB
@@ -89,7 +90,7 @@ function executeProcedureParameter() {
     }
   })
 
-  request.addParameter('i_month', TYPES.Int, 10);
+  request.addParameter('i_month', TYPES.Int, 1);
   request.addParameter('i_cardType', TYPES.VarChar, 'SuperiorCard');
 
   connection.callProcedure(request);
@@ -117,3 +118,5 @@ function executeQuery() {
 
   connection.execSql(request);
 }
+
+module.exports = { connectDB }

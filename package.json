@@ -1,5 +1,5 @@
 {
-  "name": "api-sp-prueba",
+  "name": "node-sqlserver-tedious",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
